@@ -46,43 +46,68 @@ merchandise = {
 
     tables: [
         {
-            name: '',
-            price: '',
-            img: '',
-            stock: ''
+            name: 'Barstow Trestle Extension Table',
+            price: 2400,
+            img:
+                'https://cdn.shopify.com/s/files/1/0809/3571/products/trestle-table-barstow-trestle-extension-table-2.jpg?v=1492616590',
+            stock: 8
         },
         {
-            name: '',
-            price: '',
-            img: '',
-            stock: ''
+            name: 'Fossilized Clam Lava Cofee Table',
+            price: 2528.0,
+            img: 'http://mecox.com/images/uploads/pets/38885/dsc_0368.jpg',
+            stock: 4
         },
         {
-            name: '',
-            price: '',
-            img: '',
-            stock: ''
+            name: 'Wood Slab Table',
+            price: 19500.0,
+            img:
+                'https://i.pinimg.com/736x/c0/74/b2/c074b2e79b53070118cf322e38ba8a3c--wood-slab-table-wooden-tables.jpg',
+            stock: 1
         },
         {
-            name: '',
-            price: '',
-            img: '',
-            stock: ''
+            name: 'Rustic Farmhouse Table',
+            price: 150.0,
+            img:
+                'http://lonestarborger.com/wp-content/uploads/2017/09/rustic-farmhouse-dining-table-plans.jpg',
+            stock: 19
         },
         {
-            name: '',
-            price: '',
-            img: '',
-            stock: ''
+            name: 'Natural White Oak with Turquoise Inlay Dining Table',
+            price: 2400.0,
+            img:
+                'https://img0.etsystatic.com/177/0/9010447/il_570xN.1195275672_j0mo.jpg',
+            stock: 8
         },
         {
-            name: '',
-            price: '',
-            img: '',
-            stock: ''
+            name: 'Large Teak Root Coffee Table',
+            price: 1199.0,
+            img:
+                'https://www.uncommongoods.com/images/items/26000/26084_1_1200px.jpg',
+            stock: 24
         }
     ]
 };
+
+function makeTableCards() {
+    var count = 0;
+    var merch = '';
+    for (i = 0; i < merchandise.tables.length; i++) {
+        var neck =
+            '<div class="w3-card-4"><center><h2>' +
+            merchandise.tables[count].name +
+            '</h2><img src="' +
+            merchandise.tables[count].img +
+            '"alt="Norway" style="width:100%"><div class=" w3-container w3-center"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
+            merchandise.tables[count].price +
+            '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
+            merchandise.tables[count].stock +
+            '</p></div></center></div>';
+        merch += neck;
+        count += 1;
+    }
+    return merch;
+}
 
 function makeNecklaceCards() {
     var count = 0;
@@ -105,6 +130,7 @@ function makeNecklaceCards() {
 }
 function FillNeck() {
     $('#myNeck').html(makeNecklaceCards());
+    $('#myTable').html(makeTableCards());
 }
 
 function main() {
