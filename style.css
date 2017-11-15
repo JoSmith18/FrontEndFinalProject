@@ -5,3 +5,11 @@ body {
 .jumbotron {
     text-align: center;
 }
+
+.w3-card-4 {
+    width: 50%;
+}
+
+.w3-center {
+    margin: 5px;
+}
