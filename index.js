@@ -86,9 +86,72 @@ merchandise = {
                 'https://www.uncommongoods.com/images/items/26000/26084_1_1200px.jpg',
             stock: 24
         }
+    ],
+    rings: [
+        {
+            name: 'Twig & Leaf Bridal Set',
+            price: 1500,
+            img:
+                'https://img0.etsystatic.com/164/1/6050455/il_570xN.1205949726_1o6x.jpg',
+            stock: 1
+        },
+        {
+            name: 'Slim Dragon Gold & Silver Ring',
+            price: 395,
+            img:
+                'https://media-jrdunnjewelers.netdna-ssl.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/m/bm65089bl.jpg',
+            stock: 5
+        },
+        {
+            name: 'Copper Elephant Ring',
+            price: 38.0,
+            img:
+                'https://img1.etsystatic.com/011/1/5407252/il_340x270.467233077_ddxe.jpg',
+            stock: 27
+        },
+        {
+            name: 'Scottish Thistle Ring',
+            price: 135.0,
+            img:
+                'https://img1.etsystatic.com/122/0/7096101/il_fullxfull.857239243_4mtq.jpg',
+            stock: 12
+        },
+        {
+            name: 'Spinner Silver Heart Ring',
+            price: 149.0,
+            img:
+                'https://img0.etsystatic.com/000/0/5589439/il_fullxfull.276977540.jpg',
+            stock: 10
+        },
+        {
+            name: 'Thistle Moissanite Engagement Ring',
+            price: 427.0,
+            img:
+                'https://img0.etsystatic.com/119/0/7096101/il_340x270.998680116_dv0j.jpg',
+            stock: 8
+        }
     ]
 };
 
+function makeRingCards() {
+    var count = 0;
+    var merch = '';
+    for (i = 0; i < merchandise.tables.length; i++) {
+        var neck =
+            '<div class="w3-card-4"><center><h2>' +
+            merchandise.rings[count].name +
+            '</h2><img src="' +
+            merchandise.rings[count].img +
+            '"alt="Norway" style="width:100%"><div class=" w3-container w3-center"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
+            merchandise.rings[count].price +
+            '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
+            merchandise.rings[count].stock +
+            '</p></div></center></div>';
+        merch += neck;
+        count += 1;
+    }
+    return merch;
+}
 function makeTableCards() {
     var count = 0;
     var merch = '';
@@ -131,6 +194,7 @@ function makeNecklaceCards() {
 function FillNeck() {
     $('#myNeck').html(makeNecklaceCards());
     $('#myTable').html(makeTableCards());
+    $('#myRings').html(makeRingCards());
 }
 
 function main() {
