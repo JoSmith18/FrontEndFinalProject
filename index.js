@@ -42,31 +42,73 @@ merchandise = {
                 'https://cdn0.rubylane.com/shops/tropictradingco/0312-13.1L.jpg',
             stock: 3
         }
+    ],
+
+    tables: [
+        {
+            name: '',
+            price: '',
+            img: '',
+            stock: ''
+        },
+        {
+            name: '',
+            price: '',
+            img: '',
+            stock: ''
+        },
+        {
+            name: '',
+            price: '',
+            img: '',
+            stock: ''
+        },
+        {
+            name: '',
+            price: '',
+            img: '',
+            stock: ''
+        },
+        {
+            name: '',
+            price: '',
+            img: '',
+            stock: ''
+        },
+        {
+            name: '',
+            price: '',
+            img: '',
+            stock: ''
+        }
     ]
 };
 
 function makeNecklaceCards() {
-    for (i = 0; i < merchandise.length; i++) {
-        '<div class="w3-card-4" style="width:50%"><center><h2>' +
-            merchandise.necklace.name +
-            '</h2></center><img src="' +
-            merchandise.necklace.img +
-            '"alt="Norway" style="width:100%"><div class="w3-container w3-center"><p>Price:' +
-            merchandise.necklace.price +
-            '</p><p>Stock:' +
-            merchandise.necklace.stock +
-            '</p></div></div>';
+    var count = 0;
+    var merch = '';
+    for (i = 0; i < merchandise.necklace.length; i++) {
+        var neck =
+            '<div class="w3-card-4"><center><h2>' +
+            merchandise.necklace[count].name +
+            '</h2><img src="' +
+            merchandise.necklace[count].img +
+            '"alt="Norway" style="width:100%"><div class=" w3-container w3-center"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
+            merchandise.necklace[count].price +
+            '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
+            merchandise.necklace[count].stock +
+            '</p></div></center></div>';
+        merch += neck;
+        count += 1;
     }
+    return merch;
 }
 function FillNeck() {
-    $('#myNeck').html(
-        '<div class="col-lg-3 col-sm-3"><h3><img src="' +
-            +'">' +
-            +'</h3><span>Price-' +
-            +'</span><br>'
-    );
+    $('#myNeck').html(makeNecklaceCards());
 }
 
-function main() {}
+function main() {
+    FillNeck();
+}
 
 $(main);
