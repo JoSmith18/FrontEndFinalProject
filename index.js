@@ -138,15 +138,15 @@ function makeRingCards() {
     var merch = '';
     for (i = 0; i < merchandise.tables.length; i++) {
         var neck =
-            '<div class="w3-card-4"><center><h2>' +
+            '<div class="col-sm-4 col-lg-4"><div class="panel panel-danger"><div class="panel-heading">' +
             merchandise.rings[count].name +
-            '</h2><img src="' +
+            '</div><div class="panel-body"><img src="' +
             merchandise.rings[count].img +
-            '"alt="Norway" style="width:100%"><div class=" w3-container w3-center"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
+            '" class="img-responsive img" alt="Image"></div><div class="panel-footer"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
             merchandise.rings[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise.rings[count].stock +
-            '</p></div></center></div>';
+            '</p></div></div></div>';
         merch += neck;
         count += 1;
     }
@@ -157,15 +157,16 @@ function makeTableCards() {
     var merch = '';
     for (i = 0; i < merchandise.tables.length; i++) {
         var neck =
-            '<div class="w3-card-4"><center><h2>' +
+            '<div class="col-sm-4 col-lg-4"><div class="panel panel-danger"><div class="panel-heading">' +
             merchandise.tables[count].name +
-            '</h2><img src="' +
+            '</div><div class="panel-body"><img src="' +
             merchandise.tables[count].img +
-            '"alt="Norway" style="width:100%"><div class=" w3-container w3-center"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
+            '" class="img-responsive img" alt="Image"></div><div class="panel-footer"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
             merchandise.tables[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise.tables[count].stock +
-            '</p></div></center></div>';
+            '</p></div></div></div>';
+
         merch += neck;
         count += 1;
     }
@@ -177,15 +178,15 @@ function makeNecklaceCards() {
     var merch = '';
     for (i = 0; i < merchandise.necklace.length; i++) {
         var neck =
-            '<div class="w3-card-4"><center><h2>' +
+            '<div class="col-sm-4 col-lg-4"><div class="panel panel-danger"><div class="panel-heading">' +
             merchandise.necklace[count].name +
-            '</h2><img src="' +
+            '</div><div class="panel-body"><img src="' +
             merchandise.necklace[count].img +
-            '"alt="Norway" style="width:100%"><div class=" w3-container w3-center"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
+            '" class="img-responsive img" alt="Image"></div><div class="panel-footer"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
             merchandise.necklace[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise.necklace[count].stock +
-            '</p></div></center></div>';
+            '</p></div></div></div>';
         merch += neck;
         count += 1;
     }
@@ -197,6 +198,24 @@ function FillNeck() {
     $('#myRings').html(makeRingCards());
 }
 
+function showMerchandise() {
+    $('.merchandise')
+        .removeClass('hide')
+        .addClass('show');
+
+    $('#Sell')
+        .removeClass('show')
+        .addClass('hide');
+}
+
+function SellForm() {
+    $('#Merchandise')
+        .removeClass('show')
+        .addClass('hide');
+    $('#Sell')
+        .removeClass('hide')
+        .addClass('show');
+}
 function main() {
     FillNeck();
 }
