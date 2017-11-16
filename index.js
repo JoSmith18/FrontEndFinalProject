@@ -53,7 +53,7 @@ merchandise = {
             stock: 8
         },
         {
-            name: 'Fossilized Clam Lava Cofee Table',
+            name: 'Fossilized Clam Lava Table',
             price: 2528.0,
             img: 'http://mecox.com/images/uploads/pets/38885/dsc_0368.jpg',
             stock: 4
@@ -73,7 +73,7 @@ merchandise = {
             stock: 19
         },
         {
-            name: 'Natural White Oak with Turquoise Inlay Dining Table',
+            name: 'Natural White Oak Dining Table',
             price: 2400.0,
             img:
                 'https://img0.etsystatic.com/177/0/9010447/il_570xN.1195275672_j0mo.jpg',
@@ -124,7 +124,7 @@ merchandise = {
             stock: 10
         },
         {
-            name: 'Thistle Moissanite Engagement Ring',
+            name: 'Thistle Moissanite Ring',
             price: 427.0,
             img:
                 'https://img0.etsystatic.com/119/0/7096101/il_340x270.998680116_dv0j.jpg',
@@ -146,7 +146,7 @@ function makeRingCards() {
             merchandise.rings[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise.rings[count].stock +
-            '</p></div></div></div>';
+            '</p><button class="btn-primary btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i>CheckOut</button></div></div></div>';
         merch += neck;
         count += 1;
     }
@@ -165,7 +165,7 @@ function makeTableCards() {
             merchandise.tables[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise.tables[count].stock +
-            '</p></div></div></div>';
+            '</p><button class="btn-primary btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i>CheckOut</button></div></div></div>';
 
         merch += neck;
         count += 1;
@@ -186,7 +186,7 @@ function makeNecklaceCards() {
             merchandise.necklace[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise.necklace[count].stock +
-            '</p></div></div></div>';
+            '</p><button class="btn-primary btn-xs"><i class="fa fa-shopping-cart" aria-hidden="true"></i>CheckOut</button></div></div></div>';
         merch += neck;
         count += 1;
     }
