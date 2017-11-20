@@ -127,17 +127,27 @@ merchandise = [
 ];
 
 function showCheckout() {
-    var arr = addtoCart();
-    for (i = 0; i < arr.length; i++) {
-        arr[0];
-    }
+    $('#Merchandise')
+        .removeClass('show')
+        .addClass('hide');
+    $('#Sell')
+        .removeClass('show')
+        .addClass('hide');
+    $('#CheckOut')
+        .removeClass('hide')
+        .addClass('show');
 }
 
-function addtoCart(id) {
+function addtoCart(num) {
     var arr = [];
-    element = document.getElementById(id);
-    arr.push(merchandise[element]);
-    return arr;
+    arr.push(merchandise[num]);
+    $('#CheckOut').append(
+        '<h5>' +
+            merchandise[num].name +
+            ':Price $' +
+            merchandise[num].price +
+            '</h5>'
+    );
 }
 
 function makeCards() {
@@ -153,9 +163,9 @@ function makeCards() {
             merchandise[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise[count].stock +
-            '</p><button class="btn-primary btn-xs" onclick="addtoCart()" id="' +
+            '</p><button class="btn-primary btn-xs cb" onclick="addtoCart(' +
             count +
-            '"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
+            ')"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
         merch += neck;
         count += 1;
     }
@@ -167,6 +177,9 @@ function FillNeck() {
 }
 
 function showMerchandise() {
+    $('#CheckOut')
+        .removeClass('show')
+        .addClass('hide');
     $('.merchandise')
         .removeClass('hide')
         .addClass('show');
@@ -177,6 +190,9 @@ function showMerchandise() {
 }
 
 function SellForm() {
+    $('#CheckOut')
+        .removeClass('show')
+        .addClass('hide');
     $('#Merchandise')
         .removeClass('show')
         .addClass('hide');
