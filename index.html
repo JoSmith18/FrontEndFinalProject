@@ -39,36 +39,27 @@
             </div>
 
             <div class="col-lg-9 col-sm-9 sell tab-content hide" id="Sell">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Upload Photo of Item</label>
-                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Price of Item</label>
-                        <div class="form-group">
+                <div class="form-group">
+                    <form>
+                        <fieldset>
+                            <label for="exampleInputFile">Upload Photo of Item</label>
+                            <input type="file" class="form-control-file" id="pic" aria-describedby="fileHelp">
+                            <br>
+                            <label class="col-form-label col-form-label-sm" for="inputSmall">Name of Item</label>
+                            <input class="form-control form-control-sm" type="text" id="name" style="width: 23.5%">
+                            <br>
                             <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">$</div>
-                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Price" style="width: 20%">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label col-form-label-sm" for="inputSmall">Name of Item</label>
-                        <input class="form-control form-control-sm" type="text" id="inputSmall" style="width: 23.5%">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Type of Item</label>
-                        <select class="form-control" id="exampleSelect1" style="width: 23.5%">
-                            <option>Please Select</option>
-                            <option>Necklace</option>
-                            <option>Table</option>
-                            <option>Ring</option>
-                        </select>
-                    </div>
-                </form>
+                            <input type="text" class="form-control" id="price" placeholder="Price" style="width: 20%">
+                            <br>
+
+
+                        </fieldset>
+                    </form>
+                    <button class="btn btn-lg signup-btn" onclick="addToMerch()">Submit</button>
+                </div>
             </div>
+
+            <div class="col-lg-9 col-sm-9 checkout tab-content hide" id="CheckOut"></div>
         </div>
 
         <script src="vendor/jquery.js"></script>
