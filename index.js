@@ -126,6 +126,21 @@ merchandise = [
     }
 ];
 
+function getImgURL(){
+    var img = $('#price').change(function(event){
+        return URL.createObjectURL(event.target.files[0])}
+}
+function addToMerch() {
+    
+    merchandise.push({
+        name: $('#name').val(),
+        price: $('#price').val(),
+        img: $('#pic').val(),
+        stock: 1
+    });
+
+    $('.product').html(makeCards(merchandise));
+}
 function showCheckout() {
     $('#Merchandise')
         .removeClass('show')
@@ -150,7 +165,7 @@ function addtoCart(num) {
     );
 }
 
-function makeCards() {
+function makeCards(merchandise) {
     var count = 0;
     var merch = '';
     for (i = 0; i < merchandise.length; i++) {
@@ -173,7 +188,7 @@ function makeCards() {
 }
 
 function FillNeck() {
-    $('.product').html(makeCards());
+    $('.product').html(makeCards(merchandise));
 }
 
 function showMerchandise() {
