@@ -126,20 +126,39 @@ merchandise = [
     }
 ];
 
-function getImgURL(){
-    var img = $('#price').change(function(event){
-        return URL.createObjectURL(event.target.files[0])}
+function getImgURL() {
+    $('#pic').change(function(event) {
+        var img = URL.createObjectURL(event.target.files[0]);
+        return img;
+    });
 }
 function addToMerch() {
-    
+    $('[data-toggle="popover"]').popover();
     merchandise.push({
         name: $('#name').val(),
         price: $('#price').val(),
-        img: $('#pic').val(),
+        img: getImgURL(),
         stock: 1
     });
-
+    $('#name').val('');
+    $('#price').val('');
+    $('#pic').val('');
     $('.product').html(makeCards(merchandise));
+}
+
+function showHome() {
+    $('#Merchandise')
+        .removeClass('show')
+        .addClass('hide');
+    $('#Sell')
+        .removeClass('show')
+        .addClass('hide');
+    $('#CheckOut')
+        .removeClass('show')
+        .addClass('hide');
+    $('#Home')
+        .removeClass('hide')
+        .addClass('show');
 }
 function showCheckout() {
     $('#Merchandise')
@@ -151,11 +170,18 @@ function showCheckout() {
     $('#CheckOut')
         .removeClass('hide')
         .addClass('show');
+    $('#Home')
+        .removeClass('show')
+        .addClass('hide');
 }
 
 function addtoCart(num) {
     var arr = [];
-    arr.push(merchandise[num]);
+
+    // $('#' + num)
+    //     .attr('aria-describedby', 'popover83403')
+    //     .popover();
+    merchandise[num].stock -= 1;
     $('#CheckOut').append(
         '<h5>' +
             merchandise[num].name +
@@ -163,6 +189,7 @@ function addtoCart(num) {
             merchandise[num].price +
             '</h5>'
     );
+    $('.product').html(makeCards(merchandise));
 }
 
 function makeCards(merchandise) {
@@ -170,7 +197,7 @@ function makeCards(merchandise) {
     var merch = '';
     for (i = 0; i < merchandise.length; i++) {
         var neck =
-            '<div class="col-sm-4 col-lg-4"><div class="panel panel-danger"><div class="panel-heading">' +
+            '<div class="col-sm-4 col-lg-4"><div class="panel panel-default"><div class="panel-heading">' +
             merchandise[count].name +
             '</div><div class="panel-body"><img src="' +
             merchandise[count].img +
@@ -178,17 +205,24 @@ function makeCards(merchandise) {
             merchandise[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise[count].stock +
-            '</p><button class="btn-primary btn-xs cb" onclick="addtoCart(' +
+            '</p><button class="btn-primary btn-xs cb" data-container="body"  tabindex="0" data-toggle="popover" data-placement="bottom" data-content="' +
+            merchandise[count].name +
+            'has been added to the cart' +
+            '" data-original-title="Success" data-trigger="focus" onclick="addtoCart(' +
             count +
-            ')"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
+            ')"id="' +
+            count +
+            '"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
         merch += neck;
         count += 1;
     }
+
     return merch;
 }
 
 function FillNeck() {
     $('.product').html(makeCards(merchandise));
+    $('[data-toggle="popover"]').popover();
 }
 
 function showMerchandise() {
@@ -200,6 +234,9 @@ function showMerchandise() {
         .addClass('show');
 
     $('#Sell')
+        .removeClass('show')
+        .addClass('hide');
+    $('#Home')
         .removeClass('show')
         .addClass('hide');
 }
@@ -214,6 +251,9 @@ function SellForm() {
     $('#Sell')
         .removeClass('hide')
         .addClass('show');
+    $('#Home')
+        .removeClass('show')
+        .addClass('hide');
 }
 function main() {
     FillNeck();
