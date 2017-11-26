@@ -2,8 +2,12 @@ body {
     font-family: sans-serif;
 }
 
+.tron-text {
+    color: white;
+}
 .jumbotron {
     text-align: center;
+    background-color: black;
 }
 
 .w3-card-4 {
@@ -23,4 +27,8 @@ body {
 .img {
     height: 200px;
     width: 200px;
+}
+
+.panel {
+    background-color: black;
 }
