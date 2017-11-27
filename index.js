@@ -126,6 +126,9 @@ merchandise = [
     }
 ];
 
+var arr = [];
+var count = 0;
+
 function getImgURL() {
     $('#pic').change(function(event) {
         var img = URL.createObjectURL(event.target.files[0]);
@@ -176,20 +179,26 @@ function showCheckout() {
 }
 
 function addtoCart(num) {
-    var arr = [];
-
-    // $('#' + num)
-    //     .attr('aria-describedby', 'popover83403')
-    //     .popover();
     merchandise[num].stock -= 1;
-    $('#CheckOut').append(
+    // $('.product').html(makeCards(merchandise));
+    $('' + num).popover();
+
+    arr.push(merchandise[num]);
+    $('#CheckOut').prepend(
         '<h5>' +
             merchandise[num].name +
             ':Price $' +
             merchandise[num].price +
-            '</h5>'
+            '</h5><hr>'
     );
-    $('.product').html(makeCards(merchandise));
+
+    count += merchandise[num].price;
+    var total = count;
+    console.log();
+
+    $('#total').html('<h5>Total:' + total + '</h5>');
+
+    //
 }
 
 function makeCards(merchandise) {
@@ -205,14 +214,14 @@ function makeCards(merchandise) {
             merchandise[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise[count].stock +
-            '</p><button class="btn-primary btn-xs cb" data-container="body"  tabindex="0" data-toggle="popover" data-placement="bottom" data-content="' +
+            '</p><b class="btn-primary btn-xs cb" data-container="body" role="button" tabindex="0" data-toggle="popover" data-placement="bottom" data-content="' +
             merchandise[count].name +
             'has been added to the cart' +
-            '" data-original-title="Success" data-trigger="focus" onclick="addtoCart(' +
+            '" data-original-title="Success" data-trigger="focus" href="#" onclick="addtoCart(' +
             count +
             ')"id="' +
             count +
-            '"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
+            '"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</b></div></div></div>';
         merch += neck;
         count += 1;
     }
