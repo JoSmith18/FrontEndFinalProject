@@ -136,17 +136,24 @@ function getImgURL() {
     });
 }
 function addToMerch() {
-    $('[data-toggle="popover"]').popover();
-    merchandise.push({
-        name: $('#name').val(),
-        price: $('#price').val(),
-        img: getImgURL(),
-        stock: 1
-    });
-    $('#name').val('');
-    $('#price').val('');
-    $('#pic').val('');
-    $('.product').html(makeCards(merchandise));
+    if (/^\d+$/g.test($('#price').val())) {
+        $('[data-toggle="popover"]').popover();
+        merchandise.push({
+            name: $('#name').val(),
+            price: $('#price').val(),
+            img: extractFilename($('#pic').val()),
+            stock: 1
+        });
+        $('#name').val('');
+        $('#price').val('');
+        $('#pic').val('');
+        $('.product').html(makeCards(merchandise));
+    } else {
+        $('.btn').removeClass('data-content');
+        $('#price')
+            .addClass('has-error')
+            .prepend('<h3>Must Be A Number</h3>');
+    }
 }
 
 function showHome() {
@@ -185,20 +192,44 @@ function addtoCart(num) {
 
     arr.push(merchandise[num]);
     $('#CheckOut').prepend(
-        '<h5>' +
+        '<div class="col-sm-4 col-lg-4"><div class="panel panel-default"><div class="panel-heading">' +
             merchandise[num].name +
-            ':Price $' +
-            merchandise[num].price +
-            '</h5><hr>'
+            '</div><div class="panel-body"><img src="' +
+            merchandise[num].img +
+            '" class="img-responsive img" alt="Image"></div></div></div>'
+        // '<h5>' +
+        //     merchandise[num].name +
+        //     ':Price $' +
+        //     merchandise[num].price +
+        // '</h5>
+        // '<hr>'
     );
 
     count += merchandise[num].price;
     var total = count;
     console.log();
 
-    $('#total').html('<h5>Total:' + total + '</h5>');
+    $('#total').html('<center><h5>Total:' + total + '</h5></center>');
 
     //
+}
+
+function extractFilename(path) {
+    if (path.substr(0, 12) == 'c:\\fakepath\\') {
+        return path.substr(12);
+    } // modern browser
+    var x;
+    x = path.lastIndexOf('/');
+    if (x >= 0) {
+        // Unix-based path
+        return path.lastIndexOf('');
+    }
+    x = path.lastIndexOf('\\');
+    if (x >= 0) {
+        // Windows-based path
+        return path.substr(x + 1);
+    }
+    return path; // just the file name
 }
 
 function makeCards(merchandise) {
