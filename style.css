@@ -1,5 +1,24 @@
+@font-face {
+    font-family: 'Cabin';
+    src: url('vendor/Fonts/Cabin/Cabin-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AmaticSC';
+    src: url('vendor/Fonts/Amatic_SC/AmaticSC-Regular.ttf') format('truetype');
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Cabin', sans-serif;
+}
+h2 {
+    font-family: 'AmaticSC', sans-serif;
+    font-size: 3.5em;
+}
+
+h1 {
+    font-family: 'AmaticSC', sans-serif;
+    font-size: 5em;
 }
 
 .tron-text,
