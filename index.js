@@ -185,11 +185,13 @@ function showCheckout() {
         .addClass('hide');
 }
 
-function addtoCart(num) {
+function subtractStock(num) {
     merchandise[num].stock -= 1;
-    // $('.product').html(makeCards(merchandise));
     $('' + num).popover();
+}
 
+function addtoCart(num) {
+    subtractStock(num);
     arr.push(merchandise[num]);
     $('#CheckOut').prepend(
         '<div class="col-sm-4 col-lg-4"><div class="panel panel-default"><div class="panel-heading">' +
@@ -197,21 +199,17 @@ function addtoCart(num) {
             '</div><div class="panel-body"><img src="' +
             merchandise[num].img +
             '" class="img-responsive img" alt="Image"></div></div></div>'
-        // '<h5>' +
-        //     merchandise[num].name +
-        //     ':Price $' +
-        //     merchandise[num].price +
-        // '</h5>
-        // '<hr>'
     );
 
     count += merchandise[num].price;
     var total = count;
-    console.log();
 
-    $('#total').html('<center><h5>Total:' + total + '</h5></center>');
-
-    //
+    $('#total').html(
+        '<center><h5>Total: $' + total.toFixed(2) + '</h5></center>'
+    );
+    setTimeout(function() {
+        main();
+    }, 2000);
 }
 
 function extractFilename(path) {
@@ -232,7 +230,7 @@ function extractFilename(path) {
     return path; // just the file name
 }
 
-function makeCards(merchandise) {
+function makeCards() {
     var count = 0;
     var merch = '';
     for (i = 0; i < merchandise.length; i++) {
@@ -245,24 +243,28 @@ function makeCards(merchandise) {
             merchandise[count].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
             merchandise[count].stock +
-            '</p><b class="btn-primary btn-xs cb" data-container="body" role="button" tabindex="0" data-toggle="popover" data-placement="bottom" data-content="' +
+            '</p><button class="';
+        neck +=
+            merchandise[count].stock > 0
+                ? 'btn-primary btn-xs'
+                : 'btn-secondary btn-xs';
+        neck +=
+            '" data-container="body" tabindex="0" data-toggle="popover" data-placement="bottom" data-content="' +
             merchandise[count].name +
             'has been added to the cart' +
             '" data-original-title="Success" data-trigger="focus" href="#" onclick="addtoCart(' +
             count +
             ')"id="' +
             count +
-            '"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</b></div></div></div>';
+            '"';
+        neck += merchandise[count].stock > 0 ? '' : ' disabled';
+        neck +=
+            '><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
         merch += neck;
         count += 1;
     }
 
     return merch;
-}
-
-function FillNeck() {
-    $('.product').html(makeCards(merchandise));
-    $('[data-toggle="popover"]').popover();
 }
 
 function showMerchandise() {
@@ -296,7 +298,19 @@ function SellForm() {
         .addClass('hide');
 }
 function main() {
-    FillNeck();
+    $('.product').html(makeCards());
+    $('[data-toggle="popover"]').popover({
+        placement: 'bottom',
+        delay: {
+            show: 200,
+            hide: 100
+        }
+    });
+    $('[data-toggle="popover"]').click(function() {
+        setTimeout(function() {
+            $('.popover').fadeOut('slow');
+        }, 2000);
+    });
 }
 
 $(main);
