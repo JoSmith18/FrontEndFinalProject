@@ -33,72 +33,43 @@
             <h3 class="tron-text">H&amp;T HandCrafted Goods
                 <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
             </h3>
-        </div>
-        <div class="col-lg-12 col-sm-12 col-md-6 ">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <button class="nav-link btn btn-primary btn-md button" data-toggle="tab" onclick="showHome()">
-                        <h4 class="tab-font">Home</h4>
-                    </button>
-                </li>
-                <br>
-                <li class="nav-item">
-                    <button class="nav-link btn btn-primary btn-md button" data-toggle="tab" onclick="showMerchandise()" href="#Merchandise">
-                        <h4 class="tab-font">Buy</h4>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link btn btn-primary btn-md button" data-toggle="tab" onclick="SellForm()" href="">
-                        <h4 class="tab-font">Sell</h4>
-                    </button>
-                </li>
-                <br>
-                <li class="nav-item">
-                    <button class="nav-link btn btn-primary btn-md button" onclick="showCheckout()">
+            <button class=" btn btn-primary btn-md button" data-toggle="tab" onclick="showHome()">
+                <h4 class="tab-font">Home</h4>
+            </button>
+            <button class=" btn btn-primary btn-md button" data-toggle="tab" onclick="showMerchandise()" href="#Merchandise">
+                <h4 class="tab-font">Buy</h4>
+            </button>
+            <button class=" btn btn-primary btn-md button" data-toggle="tab" onclick="SellForm()" href="">
+                <h4 class="tab-font">Sell</h4>
+            </button>
+            <button class=" btn btn-primary btn-md button" onclick="showCheckout()">
 
-                        <h4 class="tab-font">
-                            <i class="fa fa-money" aria-hidden="true"></i>Cart</h4>
-                    </button>
-                </li>
-            </ul>
-            <div class="col-lg-9 col-sm-12 merchandise tab-content hide" id="Merchandise">
+                <h4 class="tab-font">
+                    <i class="fa fa-money" aria-hidden="true"></i>Cart</h4>
+            </button>
+        </div>
+        <div class="col-lg-12 col-sm-12 ">
+            <div class="col-lg-12 col-sm-12 merchandise tab-content hide" id="Merchandise">
                 <div class="product"></div>
 
             </div>
-            <div class="col-lg-9 col-sm-12 merchandise tab-content show" id="Home">
+            <div class="col-lg-12 col-sm-12 merchandise tab-content show" id="Home">
                 <center>
                     <h1>H&T HandCrafted Goods</h1>
                     <br>
-                </center>
-                <ol>
-                    <li>
-                        <h2>We deliever authentic handmade goods</h2>
-                    </li>
-                    <br>
-                    <li>
-                        <h2>We offer many items to choose to buy from</h2>
-                    </li>
-                    <br>
-                    <li>
-                        <h2>Can come sell your handmade goods</h2>
-                    </li>
-                    <br>
-                    <li>
-                        <h2>Easy checkout when done</h2>
-                    </li>
-                </ol>
-                <center>
+                    <h2>We deliever authentic handmade goods and offer many items to choose to buy from. Come sell your handmade
+                        goods and give your customers an easy checkout process.</h2>
                     <img src="https://www.mindfullysplendid.com/wp-content/uploads/2016/09/icon-hand-made.png">
                 </center>
             </div>
 
         </div>
-        <div class="col-lg-9 col-sm-12 sell tab-content hide" id="Sell">
+        <div class="col-lg-12 col-sm-12 sell tab-content hide" id="Sell">
             <div class="form-group">
                 <form>
                     <fieldset>
                         <label for="exampleInputFile">Upload Photo of Item</label>
-                        <input type="file" class="form-control-file" id="pic" aria-describedby="fileHelp">
+                        <input type="file" class="form-control-file" id="pic" aria-describedby="fileHelp" onchange="getImgURL()">
                         <br>
                         <label class="col-form-label col-form-label-sm" for="inputSmall">Name of Item</label>
                         <input class="form-control form-control-sm" type="text" id="name" style="width: 23.5%">
@@ -115,7 +86,7 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-sm-12 checkout tab-content hide" id="CheckOut">
+        <div class="col-lg-12 col-sm-12 checkout tab-content hide" id="CheckOut">
             <div id="total"></div>
         </div>
     </div>
