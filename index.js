@@ -126,9 +126,8 @@ merchandise = [
     }
 ];
 
-var arr = [];
-var count = 0;
-var FILES = new FileReader();
+var shopping_cart = [];
+var total = 0;
 
 function getImgURL() {
     $('#pic').on('click', function(event) {
@@ -138,8 +137,8 @@ function getImgURL() {
 }
 
 function addToMerch() {
-    console.log($('#pic'));
-    if (/^\d+$/g.test($('#price').val())) {
+    var price = Number($('#price').val());
+    if (!Number.isNaN(price)) {
         $('[data-toggle="popover"]').popover();
         merchandise.push({
             name: $('#name').val(),
@@ -190,12 +189,12 @@ function showCheckout() {
 
 function subtractStock(num) {
     merchandise[num].stock -= 1;
-    $('' + num).popover();
+    $(String(num)).popover();
 }
 
 function addtoCart(num) {
     subtractStock(num);
-    arr.push(merchandise[num]);
+    shopping_cart.push(merchandise[num]);
     $('#CheckOut').prepend(
         '<div class="col-sm-4 col-lg-4"><div class="panel panel-default"><div class="panel-heading">' +
             merchandise[num].name +
@@ -204,8 +203,7 @@ function addtoCart(num) {
             '" class="img-responsive img" alt="Image"></div></div></div>'
     );
 
-    count += merchandise[num].price;
-    var total = count;
+    total += merchandise[num].price;
 
     $('#total').html(
         '<center><h5>Total: $' + total.toFixed(2) + '</h5></center>'
@@ -232,37 +230,35 @@ function readURL(input) {
 }
 
 function makeCards() {
-    var count = 0;
     var merch = '';
     for (i = 0; i < merchandise.length; i++) {
         var neck =
             '<div class="col-sm-4 col-lg-4"><div class="panel panel-default"><div class="panel-heading">' +
-            merchandise[count].name +
+            merchandise[i].name +
             '</div><div class="panel-body"><img src="' +
-            merchandise[count].img +
+            merchandise[i].img +
             '" class="img-responsive img" alt="Image"></div><div class="panel-footer"><p><i class="fa fa-usd" aria-hidden="true"></i> Price:$ ' +
-            merchandise[count].price +
+            merchandise[i].price +
             '</p><p><i class="fa fa-shopping-basket" aria-hidden="true"></i> Stock:' +
-            merchandise[count].stock +
+            merchandise[i].stock +
             '</p><button class="';
         neck +=
-            merchandise[count].stock > 0
+            merchandise[i].stock > 0
                 ? 'btn-primary btn-xs'
                 : 'btn-secondary btn-xs';
         neck +=
             '" data-container="body" tabindex="0" data-toggle="popover" data-placement="bottom" data-content="' +
-            merchandise[count].name +
+            merchandise[i].name +
             'has been added to the cart' +
             '" data-original-title="Success" data-trigger="focus" href="#" onclick="addtoCart(' +
-            count +
+            i +
             ')"id="' +
-            count +
+            i +
             '"';
-        neck += merchandise[count].stock > 0 ? '' : ' disabled';
+        neck += merchandise[i].stock > 0 ? '' : ' disabled';
         neck +=
             '><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add-to-Cart</button></div></div></div>';
         merch += neck;
-        count += 1;
     }
 
     return merch;
