@@ -128,22 +128,23 @@ merchandise = [
 
 var arr = [];
 var count = 0;
-var FILES = new Object();
+var FILES = new FileReader();
 
 function getImgURL() {
-    $('#pic').change(function(event) {
-        console.log(event);
+    $('#pic').on('click', function(event) {
         var img = URL.createObjectURL(event.target.files[0]);
         return img;
     });
 }
+
 function addToMerch() {
+    console.log($('#pic'));
     if (/^\d+$/g.test($('#price').val())) {
         $('[data-toggle="popover"]').popover();
         merchandise.push({
             name: $('#name').val(),
             price: $('#price').val(),
-            img: getImgURL(),
+            img: '',
             stock: 1
         });
         $('#name').val('');
@@ -215,16 +216,19 @@ function addtoCart(num) {
 }
 
 function readURL(input) {
+    // FILES.readAsDataURL(input);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            $('#blah')
+            $('#pic')
                 .attr('src', e.target.result)
                 .width(150)
                 .height(200);
         };
-        reader.readAsDataURL(input.files[0]);
+        console.log(reader.readAsDataURL(input.files[0]));
+        return reader.readAsDataURL(input.files[0]);
     }
+    console.log(input);
 }
 
 function makeCards() {
