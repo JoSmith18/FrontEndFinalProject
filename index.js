@@ -128,9 +128,11 @@ merchandise = [
 
 var arr = [];
 var count = 0;
+var FILES = new Object();
 
 function getImgURL() {
     $('#pic').change(function(event) {
+        console.log(event);
         var img = URL.createObjectURL(event.target.files[0]);
         return img;
     });
@@ -141,7 +143,7 @@ function addToMerch() {
         merchandise.push({
             name: $('#name').val(),
             price: $('#price').val(),
-            img: extractFilename($('#pic').val()),
+            img: getImgURL(),
             stock: 1
         });
         $('#name').val('');
@@ -212,22 +214,17 @@ function addtoCart(num) {
     }, 2000);
 }
 
-function extractFilename(path) {
-    if (path.substr(0, 12) == 'c:\\fakepath\\') {
-        return path.substr(12);
-    } // modern browser
-    var x;
-    x = path.lastIndexOf('/');
-    if (x >= 0) {
-        // Unix-based path
-        return path.lastIndexOf('');
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#blah')
+                .attr('src', e.target.result)
+                .width(150)
+                .height(200);
+        };
+        reader.readAsDataURL(input.files[0]);
     }
-    x = path.lastIndexOf('\\');
-    if (x >= 0) {
-        // Windows-based path
-        return path.substr(x + 1);
-    }
-    return path; // just the file name
 }
 
 function makeCards() {
