@@ -129,35 +129,6 @@ merchandise = [
 var shopping_cart = [];
 var total = 0;
 
-function getImgURL() {
-    $('#pic').on('click', function(event) {
-        var img = URL.createObjectURL(event.target.files[0]);
-        return img;
-    });
-}
-
-function addToMerch() {
-    var price = Number($('#price').val());
-    if (!Number.isNaN(price)) {
-        $('[data-toggle="popover"]').popover();
-        merchandise.push({
-            name: $('#name').val(),
-            price: $('#price').val(),
-            img: '',
-            stock: 1
-        });
-        $('#name').val('');
-        $('#price').val('');
-        $('#pic').val('');
-        $('.product').html(makeCards(merchandise));
-    } else {
-        $('.btn').removeClass('data-content');
-        $('#price')
-            .addClass('has-error')
-            .prepend('<h3>Must Be A Number</h3>');
-    }
-}
-
 function showHome() {
     $('#Merchandise')
         .removeClass('show')
@@ -211,22 +182,6 @@ function addtoCart(num) {
     setTimeout(function() {
         main();
     }, 2000);
-}
-
-function readURL(input) {
-    // FILES.readAsDataURL(input);
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#pic')
-                .attr('src', e.target.result)
-                .width(150)
-                .height(200);
-        };
-        console.log(reader.readAsDataURL(input.files[0]));
-        return reader.readAsDataURL(input.files[0]);
-    }
-    console.log(input);
 }
 
 function makeCards() {
@@ -294,6 +249,42 @@ function SellForm() {
         .removeClass('show')
         .addClass('hide');
 }
+
+$('#addToMerch').on('submit', function(event) {
+    event.preventDefault();
+    $('.form-group').removeClass('has-error');
+    var file = $('input:file')[0].files[0];
+    if (file) {
+        var url = window.URL.createObjectURL(file);
+    } else {
+        var url = '';
+    }
+    var price = Number($('#price').val());
+    var name = $('#name').val();
+    if (price > 0 && name.length > 3 && url.length > 1) {
+        $('[data-toggle="popover"]').popover();
+        merchandise.push({
+            name: name,
+            price: price,
+            img: url,
+            stock: 1
+        });
+        $('#name').val('');
+        $('#price').val('');
+        $('#pic').val('');
+        $('.product').html(makeCards(merchandise));
+        $('#sell-message').html(
+            '<span class="text-success">Item successfully loaded</span>'
+        );
+    } else {
+        $('.btn').removeClass('data-content');
+        $('.form-group').addClass('has-error');
+        $('#sell-message').html(
+            '<span class="text-danger">incomplete form</span>'
+        );
+    }
+});
+
 function main() {
     $('.product').html(makeCards());
     $('[data-toggle="popover"]').popover({
